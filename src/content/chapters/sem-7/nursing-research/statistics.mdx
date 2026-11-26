@@ -1,0 +1,168 @@
+---
+title: Introduction to Statistics
+subject: nursing-research
+semester: 7
+chapterNo: 7
+level: core
+summary: "Statistics for nurses — scales of measurement, data presentation, central tendency, dispersion and normal distribution."
+tags: [nursing research, statistics, scales of measurement, central tendency, dispersion]
+outcomes:
+  - Describe scales of measurement
+  - Present data using tables and graphs
+  - Calculate central tendency and dispersion
+  - Describe the normal distribution and normalising data
+minutes: 7
+updated: 2026-11-26
+---
+
+import { Callout, ExamPoints, Figure, MCQ } from '../../../../components/mdx';
+
+## In simple words
+
+Statistics is the science of collecting, organising and making sense of numbers. It turns raw data into clear findings and supports decisions.
+
+## Scales of measurement
+
+| Scale | Example | What can be done |
+|---|---|---|
+| Nominal | Gender, blood group | Count only |
+| Ordinal | Pain mild, moderate, severe | Rank or order |
+| Interval | Temperature in degrees | Add and subtract, no true zero |
+| Ratio | Height, weight, pulse | All arithmetic; true zero exists |
+
+<Figure caption="Statistics — scales of measurement, data presentation, central tendency and the normal curve.">
+  <svg viewBox="0 0 720 400" role="img" aria-label="Diagram of statistics for nurses">
+    <rect x="16" y="14" width="688" height="372" rx="16" fill="#fbfdfc" stroke="#d9e6e2" />
+    <text x="360" y="48" text-anchor="middle" font-size="16" font-weight="700" fill="#1d5f74">Statistics for nursing</text>
+    <text x="360" y="74" text-anchor="middle" font-size="9.5" letter-spacing="1.6" fill="#6b6b7b">CHAPTER MAP</text>
+    <line x1="200" y1="86" x2="520" y2="86" stroke="#dcebe6" stroke-width="1.4" />
+
+    <rect x="24" y="104" width="324" height="78" rx="10" fill="#ffffff" stroke="#2f7f99" stroke-opacity="0.45" />
+    <rect x="24" y="104" width="6" height="78" rx="3" fill="#2f7f99" />
+    <circle cx="54" cy="143" r="13" fill="#eaf6fb" stroke="#2f7f99" stroke-opacity="0.6" />
+    <text x="54" y="147" text-anchor="middle" font-size="11" font-weight="700" fill="#2f7f99">1</text>
+    <text x="78" y="134" font-size="12.5" font-weight="700" fill="#22485a">Scales</text>
+    <text x="78" y="153" font-size="10.5" fill="#5b7a86">nominal, ordinal, interval, ratio</text>
+
+    <rect x="372" y="104" width="324" height="78" rx="10" fill="#ffffff" stroke="#2f7f99" stroke-opacity="0.45" />
+    <rect x="372" y="104" width="6" height="78" rx="3" fill="#2f7f99" />
+    <circle cx="404" cy="143" r="13" fill="#eaf6fb" stroke="#2f7f99" stroke-opacity="0.6" />
+    <text x="404" y="147" text-anchor="middle" font-size="11" font-weight="700" fill="#2f7f99">2</text>
+    <text x="428" y="126" font-size="12.5" font-weight="700" fill="#22485a">Presentation</text>
+    <text x="428" y="145" font-size="10.5" fill="#5b7a86">frequency tables, bar and pie charts</text>
+
+    <rect x="24" y="194" width="324" height="78" rx="10" fill="#ffffff" stroke="#5f8f3a" stroke-opacity="0.45" />
+    <rect x="24" y="194" width="6" height="78" rx="3" fill="#5f8f3a" />
+    <circle cx="54" cy="233" r="13" fill="#eef6e6" stroke="#5f8f3a" stroke-opacity="0.6" />
+    <text x="54" y="237" text-anchor="middle" font-size="11" font-weight="700" fill="#5f8f3a">3</text>
+    <text x="78" y="224" font-size="12.5" font-weight="700" fill="#22485a">Central tendency</text>
+    <text x="78" y="243" font-size="10.5" fill="#5b7a86">mean, median and mode</text>
+
+    <rect x="372" y="194" width="324" height="78" rx="10" fill="#ffffff" stroke="#5f8f3a" stroke-opacity="0.45" />
+    <rect x="372" y="194" width="6" height="78" rx="3" fill="#5f8f3a" />
+    <circle cx="404" cy="233" r="13" fill="#eef6e6" stroke="#5f8f3a" stroke-opacity="0.6" />
+    <text x="404" y="237" text-anchor="middle" font-size="11" font-weight="700" fill="#5f8f3a">4</text>
+    <text x="428" y="206" font-size="12.5" font-weight="700" fill="#22485a">Dispersion</text>
+    <text x="428" y="225" font-size="10.5" fill="#5b7a86">range, variance, standard deviation</text>
+  </svg>
+</Figure>
+
+## Presenting data
+
+- **Frequency table** — categories with counts and percentages
+- **Bar chart** — compares categories
+- **Histogram** — shows shape of a continuous variable
+- **Pie chart** — shares of a total
+- **Line graph** — trends over time
+- **Scatter plot** — relationship between two numbers
+- **Normal curve** — symmetrical bell-shape with mean, median and mode equal
+
+## Central tendency
+
+| Measure | Formula | Use |
+|---|---|---|
+| Mean | Sum of values / number of values | Normal or interval data |
+| Median | Middle value | Skewed data |
+| Mode | Most frequent value | Nominal data |
+
+## Dispersion
+
+- **Range** = highest value minus lowest
+- **Variance** = average squared distance from the mean
+- **Standard deviation (SD)** = square root of variance
+- About 95% of values fall within 2 SD of the mean in a normal distribution
+
+## Normal distribution
+
+- Symmetrical bell-shape; mean, median and mode coincide
+- 68% within 1 SD, 95% within 2 SD, 99.7% within 3 SD
+- Skewed data use the median; extreme values pull the mean
+
+<Callout type="must" title="Choose the statistic from the level of data">
+  Nominal data give mode; interval and ratio data give mean and SD. **The level of measurement decides which test is allowed** — using a mean for a nominal variable is meaningless.
+</Callout>
+
+<ExamPoints
+  level="must"
+  items={[
+    'Four scales: nominal, ordinal, interval and ratio.',
+    'The mean is the average; the median is the middle; the mode is most frequent.',
+    'Standard deviation measures the spread of values.',
+    'In a normal distribution mean, median and mode are equal.',
+    'About 95% of values fall within 2 SD of the mean.',
+  ]}
+/>
+
+<ExamPoints
+  level="imp"
+  items={[
+    'Skewed data are better represented by the median.',
+    'The bar chart compares categories; the histogram shows distribution.',
+    'The mode is the only measure of central tendency for numbers.',
+    'The pie chart shows parts of the total.',
+    'Interpreting statistics needs both significance and clinical meaning.',
+  ]}
+/>
+
+<Callout type="note" title="Memory trick">
+  Central tendency: **M-M-M** — **M**ean, **M**edian, **M**ode.
+</Callout>
+
+## 60-second revision
+
+- Scales: nominal, ordinal, interval, ratio.
+- Presentation: tables, bar, histogram, pie, line, scatter.
+- Central tendency: mean, median, mode.
+- Dispersion: range, variance, standard deviation.
+- Normal distribution: 68-95-99.7 rule.
+
+## Test yourself
+<MCQ
+  q="Gender and blood group are measured on which scale?"
+  options={['Nominal', 'Ordinal', 'Interval', 'Ratio']}
+  answer={0}
+  explain="Gender and blood group are nominal categories with no order."/>
+
+<MCQ
+  q="The middle value of an ordered data set is the:"
+  options={['Mean', 'Median', 'Mode', 'Standard deviation']}
+  answer={1}
+  explain="The median is the middle value in an ordered list."/>
+
+<MCQ
+  q="About 68% of values in a normal distribution fall within:"
+  options={['1 SD', '2 SD', '3 SD', '4 SD']}
+  answer={0}
+  explain="In a normal distribution 68% of values lie within 1 SD of the mean, 95% within 2 SD."/>
+
+<MCQ
+  q="Weight is measured on which scale?"
+  options={['Nominal', 'Ordinal', 'Interval', 'Ratio']}
+  answer={3}
+  explain="Weight has a true zero and permits all arithmetic, so it is a ratio scale."/>
+
+<MCQ
+  q="A bar chart is best for comparing:"
+  options={['Categories', 'Ranks only', 'Standard deviation only', 'A trend over decades']}
+  answer={0}
+  explain="Bar charts compare values across categories."/>

@@ -1,0 +1,140 @@
+---
+title: Principles of Health Informatics
+subject: health-informatics
+semester: 2
+chapterNo: 2
+level: core
+summary: Health informatics — definition, data-information-knowledge-wisdom and benefits of health IT.
+tags: [informatics, health informatics, DIKW]
+outcomes:
+  - Define health informatics
+  - Describe the data-information-knowledge-wisdom hierarchy
+  - State the benefits of health information technology
+minutes: 7
+updated: 2026-11-25
+---
+
+import { Callout, ExamPoints, Figure, MCQ } from '../../../../components/mdx';
+
+## In simple words
+
+Health informatics is the use of information and technology to manage health data and improve patient care. It turns raw data into useful knowledge that supports decisions.
+
+The DIKW hierarchy shows how data becomes wisdom: data → information → knowledge → wisdom.
+
+## DIKW hierarchy
+
+| Level | Meaning | Example |
+|---|---|---|
+| Data | Raw facts | Blood pressure 150/90 |
+| Information | Data with meaning | “The patient’s BP is high” |
+| Knowledge | Applied understanding | “High BP needs treatment” |
+| Wisdom | Judicious action | “Start this patient on medication and monitor” |
+
+## Benefits of health IT
+
+- Legible, complete records.
+- Quick access to patient information.
+- Decision support (alerts, reminders).
+- Better coordination between teams.
+- Data for quality improvement and research.
+
+<Figure caption="DIKW hierarchy: data → information → knowledge → wisdom, each level adding meaning.">
+  <svg viewBox="0 0 640 420" role="img" aria-label="Diagram of DIKW hierarchy pyramid">
+    <rect x="20" y="14" width="600" height="392" rx="14" fill="#fbfdfc" stroke="#d9e6e2" />
+    <text x="90" y="50" font-size="13" fill="#1d5f74" font-weight="700">DIKW hierarchy</text>
+    <path d="M320 100 L90 310 L550 310 Z" fill="#eaf6fb" stroke="#8fc3d8" stroke-width="2" />
+    <text x="320" y="318" font-size="10" fill="#1d5f74" font-weight="700">Data — raw facts</text>
+    <path d="M320 140 L150 270 L490 270 Z" fill="#eaf6fb" stroke="#8fc3d8" stroke-width="2" />
+    <text x="320" y="278" font-size="10" fill="#1d5f74" font-weight="700">Information — meaning</text>
+    <path d="M320 180 L210 230 L430 230 Z" fill="#eaf6fb" stroke="#8fc3d8" stroke-width="2" />
+    <text x="320" y="238" font-size="10" fill="#1d5f74" font-weight="700">Knowledge — understanding</text>
+    <path d="M320 210 L270 190 L370 190 Z" fill="#eaf6fb" stroke="#8fc3d8" stroke-width="2" />
+    <text x="320" y="198" font-size="9" fill="#1d5f74" font-weight="700">Wisdom — action</text>
+    <text x="90" y="340" font-size="13" fill="#1d5f74" font-weight="700">Each level adds meaning and value</text>
+    <path d="M90 380 q-30 30 0 50 q30 -30 0 -50 Z" fill="#eef6f2" stroke="#a8c7bb" stroke-width="1.6" />
+    <text x="52" y="404" font-size="9" fill="#33506f">Supports decisions</text>
+  </svg>
+</Figure>
+
+<Callout type="must" title="Health informatics definition">
+  **Health informatics uses information and technology to manage health data and improve patient care and decisions.**
+</Callout>
+
+## Where the nurse uses this
+
+- **Document accurately** — accurate data becomes useful information.
+- **Use decision support** — heed alerts and reminders in the electronic record.
+- **Access evidence** — use electronic resources for best practice.
+- **Protect data** — keep patient information confidential and secure.
+- **Participate in quality projects** — use data to improve care.
+
+<ExamPoints
+  level="must"
+  items={[
+    'Health informatics uses information and technology to manage health data and improve care.',
+    'DIKW hierarchy: data, information, knowledge, wisdom.',
+    'Data = raw facts; information = data with meaning.',
+    'Knowledge = applied understanding; wisdom = judicious action.',
+    'Benefits: legible records, quick access, decision support, better coordination.',
+  ]}
+/>
+
+<ExamPoints
+  level="imp"
+  items={[
+    'Accurate documentation produces reliable information.',
+    'Clinical decision support gives alerts and reminders.',
+    'Health IT supports research and quality improvement.',
+    'Protect patient data confidentiality and security.',
+  ]}
+/>
+
+<Callout type="note" title="Memory trick">
+  DIKW: **“D-I-K-W”** — Data, Information, Knowledge, Wisdom. Say it like “dick-w” or spell it out.
+</Callout>
+
+## 60-second revision
+
+- Health informatics = IT to manage health data and improve care.
+- DIKW: data → information → knowledge → wisdom.
+- Benefits: legible records, quick access, decision support.
+- Accurate data → reliable information.
+- Protect patient data.
+
+## Test yourself
+
+<MCQ
+  q="Health informatics is:"
+  options={['Using IT to manage health data and improve care', 'Only buying computers', 'Only nursing documentation', 'Only research']}
+  answer={0}
+  explain="Health informatics uses information and technology to manage health data and improve patient care."
+/>
+
+<MCQ
+  q="In DIKW, 'data' means:"
+  options={['Wise decisions', 'Raw facts', 'Applied understanding', 'Meaningful conclusions']}
+  answer={1}
+  explain="Data are raw facts (e.g., blood pressure 150/90)."
+/>
+
+<MCQ
+  q="An example of information is:"
+  options={['150/90', 'The patient’s BP is high', 'Start medication', 'Normal range']}
+  answer={1}
+  explain="“The patient’s BP is high” is data given meaning — that’s information."
+/>
+
+<MCQ
+  q="A benefit of health IT is:"
+  options={['Slower access', 'Legible, complete records', 'More errors', 'Less coordination']}
+  answer={1}
+  explain="Health IT produces legible, complete records and quicker access to information."
+/>
+
+<MCQ
+  q="Wisdom in DIKW means:"
+  options={['Raw facts', 'Judicious action based on knowledge', 'Data only', 'Meaning without context']}
+  answer={1}
+  explain="Wisdom is using knowledge to make sound decisions and take appropriate action."
+/>

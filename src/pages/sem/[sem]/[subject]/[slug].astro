@@ -1,0 +1,110 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Breadcrumbs from '@components/Breadcrumbs.astro';
+import { getCollection, render } from 'astro:content';
+import { chapterPath, parseChapterId, semPath, subjectBySlug } from '@data/subjects';
+
+export async function getStaticPaths() {
+  const chapters = await getCollection('chapters');
+  return chapters.map((entry) => {
+    const p = parseChapterId(entry.id);
+    return {
+      params: { sem: String(p.semester), subject: p.subjectSlug, slug: p.slug },
+      props: { entry },
+    };
+  });
+}
+
+const { entry } = Astro.props;
+const { Content, headings } = await render(entry);
+const { semester, subjectSlug, slug } = parseChapterId(entry.id);
+const subject = subjectBySlug.get(subjectSlug);
+
+const index = subject ? subject.chapters.findIndex((c) => c.slug === slug) : -1;
+const prev = subject && index > 0 ? subject.chapters[index - 1] : undefined;
+const next = subject && index >= 0 && index < subject.chapters.length - 1 ? subject.chapters[index + 1] : undefined;
+
+const toc = headings.filter((h) => h.depth === 2 || h.depth === 3);
+---
+<BaseLayout title={entry.data.title} description={entry.data.summary}>
+  <div class="wrap">
+    <Breadcrumbs
+      items={[
+        { label: `Semester ${semester}`, href: semPath(semester) },
+        ...(subject ? [{ label: subject.title, href: `/sem/${semester}/${subject.slug}/` }] : []),
+        { label: entry.data.title },
+      ]}
+    />
+
+    <div class="chapter-shell">
+      <article>
+        <header class="page-head">
+          <ul class="chips" style="margin-bottom:10px">
+            <li>
+              <span class:list={['pill', entry.data.level === 'core' ? 'pill-core' : 'pill-support']}>
+                {entry.data.level === 'core' ? '🔴 Most important' : '⭐ Important'}
+              </span>
+            </li>
+            <li><span class="pill">{entry.data.minutes} min read</span></li>
+            {entry.data.updated && <li><span class="pill">Updated {entry.data.updated}</span></li>}
+          </ul>
+          <h1>{entry.data.title}</h1>
+          <p class="lede">{entry.data.summary}</p>
+        </header>
+
+        {entry.data.outcomes.length > 0 && (
+          <div class="callout callout-note" style="margin-top:0">
+            <p class="callout-title">🎯 After this chapter you can</p>
+            <ul>
+              {entry.data.outcomes.map((o) => <li>{o}</li>)}
+            </ul>
+          </div>
+        )}
+
+        <div class="prose">
+          <Content />
+        </div>
+
+        <nav class="pager" aria-label="Chapter navigation">
+          {prev ? (
+            <a href={chapterPath(semester, subjectSlug, prev.slug)}>← {prev.title}</a>
+          ) : (
+            <span />
+          )}
+          {next ? (
+            <a class="next" href={chapterPath(semester, subjectSlug, next.slug)}>{next.title} →</a>
+          ) : (
+            <span />
+          )}
+        </nav>
+      </article>
+
+      <aside class="aside-sticky">
+        <div class="aside-box">
+          <h2>On this page</h2>
+          <ul class="toc">
+            {toc.map((h) => (
+              <li class={`lvl-${h.depth}`}><a href={`#${h.slug}`}>{h.text}</a></li>
+            ))}
+          </ul>
+        </div>
+
+        {subject && (
+          <div class="aside-box" style="margin-top:14px">
+            <h2>{subject.code}</h2>
+            <p style="margin:0 0 6px">{subject.title}</p>
+            <p class="note-line" style="margin:0">{subject.credits} · {subject.exam} exam</p>
+            <p style="margin:10px 0 0">
+              <a href={`/sem/${semester}/${subject.slug}/`}>All chapters →</a>
+            </p>
+          </div>
+        )}
+
+        <div style="margin-top:14px">
+          <button class="btn btn-ghost" type="button" data-print style="width:100%">🖨 Print this chapter</button>
+        </div>
+      </aside>
+    </div>
+  </div>
+</BaseLayout>
+

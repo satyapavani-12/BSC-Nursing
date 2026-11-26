@@ -1,0 +1,68 @@
+---
+interface Props {
+  title?: string;
+  note?: string;
+}
+const { title = 'Gas exchange in the alveolus', note = 'Oxygen (blue) moves from the alveolus into the blood. Carbon dioxide (grey) moves from blood into the alveolus to be breathed out.' } = Astro.props;
+---
+<div class="anim" data-anim>
+  <div class="anim-head">
+    <h3>{title}</h3>
+    <button class="anim-btn" type="button" data-anim-toggle aria-pressed="false">⏸ Pause</button>
+  </div>
+  <svg viewBox="0 0 620 270" role="img" aria-label="Animation showing oxygen entering the blood and carbon dioxide leaving it in the alveolus">
+    <defs>
+      <linearGradient id="gxAlv" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#eaf6fb" />
+        <stop offset="100%" stop-color="#d6ecf6" />
+      </linearGradient>
+      <linearGradient id="gxCap" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0%" stop-color="#fdecea" />
+        <stop offset="100%" stop-color="#f8d7d3" />
+      </linearGradient>
+      <marker id="gxArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+        <path d="M0 0 L10 5 L0 10 z" fill="#556b64" />
+      </marker>
+    </defs>
+
+    <!-- alveolus -->
+    <circle cx="120" cy="135" r="88" fill="url(#gxAlv)" stroke="#8fc3d8" stroke-width="2" />
+    <circle cx="120" cy="135" r="72" fill="none" stroke="#8fc3d8" stroke-width="1" stroke-dasharray="4 5" />
+    <text x="120" y="130" text-anchor="middle" font-size="13" font-weight="700" fill="#1d5f74">ALVEOLUS</text>
+    <text x="120" y="148" text-anchor="middle" font-size="11" fill="#3d7688">air + oxygen</text>
+
+    <!-- capillary -->
+    <rect x="268" y="96" width="300" height="78" rx="39" fill="url(#gxCap)" stroke="#d79a94" stroke-width="2" />
+    <rect x="288" y="112" width="260" height="46" rx="23" fill="none" stroke="#e7b6b0" stroke-width="1" />
+    <text x="418" y="206" text-anchor="middle" font-size="12" font-weight="700" fill="#8c3b34">CAPILLARY (blood)</text>
+
+    <!-- red blood cells -->
+    <ellipse cx="330" cy="135" rx="17" ry="12" fill="#e06b62" opacity="0.85" />
+    <ellipse cx="400" cy="135" rx="17" ry="12" fill="#e06b62" opacity="0.85" />
+    <ellipse cx="470" cy="135" rx="17" ry="12" fill="#e06b62" opacity="0.85" />
+    <ellipse cx="540" cy="135" rx="17" ry="12" fill="#e06b62" opacity="0.85" />
+
+    <!-- direction arrows -->
+    <line x1="196" y1="62" x2="258" y2="62" stroke="#556b64" stroke-width="1.6" marker-end="url(#gxArrow)" />
+    <text x="227" y="52" text-anchor="middle" font-size="11" fill="#556b64">O₂ in</text>
+    <line x1="258" y1="236" x2="196" y2="236" stroke="#556b64" stroke-width="1.6" marker-end="url(#gxArrow)" />
+    <text x="227" y="256" text-anchor="middle" font-size="11" fill="#556b64">CO₂ out</text>
+
+    <!-- oxygen dots -->
+    <g fill="#2f86c9">
+      <circle class="gx-o2" cx="196" cy="112" r="7" />
+      <circle class="gx-o2" cx="196" cy="135" r="7" style="animation-delay: 1.4s" />
+      <circle class="gx-o2" cx="196" cy="158" r="7" style="animation-delay: 2.8s" />
+    </g>
+
+    <!-- carbon dioxide dots -->
+    <g fill="#7a8a86">
+      <circle class="gx-co2" cx="296" cy="120" r="6" />
+      <circle class="gx-co2" cx="296" cy="150" r="6" style="animation-delay: 2s" />
+    </g>
+
+    <text x="196" y="100" text-anchor="middle" font-size="10" fill="#2f86c9" font-weight="700">O₂</text>
+    <text x="296" y="110" text-anchor="middle" font-size="10" fill="#5d6d69" font-weight="700">CO₂</text>
+  </svg>
+  <p class="anim-note">{note}</p>
+</div>

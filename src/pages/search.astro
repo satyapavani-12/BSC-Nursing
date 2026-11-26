@@ -1,0 +1,140 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Breadcrumbs from '@components/Breadcrumbs.astro';
+---
+<BaseLayout title="Search" description="Search every Nursing Exam Prep chapter by topic, subject or keyword.">
+  <div class="wrap wrap-narrow">
+    <Breadcrumbs items={[{ label: 'Search' }]} />
+    <header class="page-head">
+      <h1>Search all topics</h1>
+      <p class="lede">Type a topic, a normal value, a disease or a nursing procedure. Results update as you type.</p>
+    </header>
+
+    <div class="searchbox">
+      <label class="sr-only" for="search">Search chapters</label>
+      <input id="search" type="search" placeholder="e.g. vital signs, cardiac cycle, IMNCI, insulin" autocomplete="off" autofocus />
+    </div>
+
+    <p class="search-hint" id="status">Loading topics…</p>
+    <div id="results" aria-live="polite"></div>
+
+    <noscript>
+      <p class="callout callout-note">
+        Search needs JavaScript. You can still browse by <a href="/">year and semester</a>.
+      </p>
+    </noscript>
+  </div>
+</BaseLayout>
+
+<script>
+  interface Item {
+    title: string;
+    summary: string;
+    subject: string;
+    semester: number;
+    level: string;
+    tags: string[];
+    url: string;
+    text: string;
+  }
+
+  const input = document.getElementById('search') as HTMLInputElement | null;
+  const results = document.getElementById('results');
+  const status = document.getElementById('status');
+  let index: Item[] = [];
+  let timer: number | undefined;
+
+  const escapeHtml = (value: string) =>
+    value.replace(/[&<>"']/g, (ch) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[ch] as string);
+
+  const highlight = (value: string, terms: string[]) => {
+    let out = escapeHtml(value);
+    for (const term of terms) {
+      const safe = term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      out = out.replace(new RegExp(`(${safe})`, 'gi'), '<mark>$1</mark>');
+    }
+    return out;
+  };
+
+  const snippet = (item: Item, terms: string[]) => {
+    const source = item.summary || item.text;
+    const lower = source.toLowerCase();
+    const at = terms.map((t) => lower.indexOf(t)).filter((i) => i >= 0).sort((a, b) => a - b)[0] ?? 0;
+    const start = Math.max(0, at - 60);
+    return (start > 0 ? '…' : '') + source.slice(start, start + 200).trim() + '…';
+  };
+
+  function search(terms: string[]) {
+    if (!results || !status) return;
+    if (terms.length === 0) {
+      results.innerHTML = '';
+      status.textContent = `${index.length} chapters available. Type to search.`;
+      return;
+    }
+
+    const hits = index
+      .map((item) => {
+        const title = item.title.toLowerCase();
+        const subject = item.subject.toLowerCase();
+        const tags = item.tags.join(' ').toLowerCase();
+        const summary = item.summary.toLowerCase();
+        const text = item.text.toLowerCase();
+
+        let score = 0;
+        for (const term of terms) {
+          if (!(title.includes(term) || subject.includes(term) || tags.includes(term) || summary.includes(term) || text.includes(term))) {
+            return { item, score: -1 };
+          }
+          if (title.includes(term)) score += 12;
+          if (tags.includes(term)) score += 7;
+          if (subject.includes(term)) score += 5;
+          if (summary.includes(term)) score += 4;
+          if (text.includes(term)) score += 1;
+        }
+        return { item, score };
+      })
+      .filter((hit) => hit.score >= 0)
+      .sort((a, b) => b.score - a.score)
+      .slice(0, 30);
+
+    if (hits.length === 0) {
+      results.innerHTML = `<p class="empty">No chapters found for “${escapeHtml(terms.join(' '))}”. Try a simpler word like “heart”, “pain” or “drug”.</p>`;
+      status.textContent = '0 results';
+      return;
+    }
+
+    status.textContent = `${hits.length} result${hits.length === 1 ? '' : 's'}`;
+    results.innerHTML = hits
+      .map(({ item }) => `
+        <a class="result" href="${item.url}">
+          <span class="path">Semester ${item.semester} · ${escapeHtml(item.subject)}</span>
+          <h3>${highlight(item.title, terms)}</h3>
+          <p>${highlight(snippet(item, terms), terms)}</p>
+        </a>`)
+      .join('');
+  }
+
+  async function start() {
+    try {
+      const response = await fetch('/search-index.json');
+      index = await response.json();
+      const params = new URLSearchParams(location.search);
+      const initial = params.get('q') ?? '';
+      if (input && initial) input.value = initial;
+      if (status) status.textContent = `${index.length} chapters available.`;
+      if (initial) search(initial.toLowerCase().split(/\s+/).filter(Boolean));
+      input?.focus();
+    } catch {
+      if (status) status.textContent = 'Search is unavailable right now. Please browse by semester.';
+    }
+  }
+
+  input?.addEventListener('input', () => {
+    window.clearTimeout(timer);
+    timer = window.setTimeout(() => {
+      search(input.value.toLowerCase().split(/\s+/).filter(Boolean));
+    }, 120);
+  });
+
+  start();
+</script>

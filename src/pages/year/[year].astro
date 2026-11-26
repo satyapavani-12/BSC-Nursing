@@ -1,0 +1,43 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Breadcrumbs from '@components/Breadcrumbs.astro';
+import { YEARS, SEMESTERS, subjectsForSemester, semPath } from '@data/subjects';
+
+export function getStaticPaths() {
+  return YEARS.map((year) => ({ params: { year: String(year.n) }, props: { year } }));
+}
+
+const { year } = Astro.props;
+const sems = year.semesters.map((n) => SEMESTERS.find((s) => s.n === n)!);
+---
+<BaseLayout title={`Year ${year.n} — ${year.title}`} description={`Semester-wise B.Sc. Nursing subjects and chapters for ${year.title}.`}>
+  <div class="wrap">
+    <Breadcrumbs items={[{ label: `Year ${year.n}` }]} />
+    <header class="page-head">
+      <span class="eyebrow">{year.tagline}</span>
+      <h1>Year {year.n}: {year.title}</h1>
+      <p class="lede">Two semesters. Each subject is split into short chapters you can finish in one sitting.</p>
+    </header>
+
+    <ul class="grid grid-2">
+      {sems.map((sem) => {
+        const list = subjectsForSemester(sem.n);
+        const chapters = list.reduce((sum, s) => sum + s.chapters.length, 0);
+        return (
+          <li>
+            <a class="card" href={semPath(sem.n)}>
+              <span class="pill pill-ready">Semester {sem.n}</span>
+              <h3>{sem.name}</h3>
+              <p>{sem.focus}</p>
+              <span class="card-meta">
+                <span>{list.length} subjects</span>
+                <span>·</span>
+                <span>{chapters} chapters</span>
+              </span>
+            </a>
+          </li>
+        );
+      })}
+    </ul>
+  </div>
+</BaseLayout>

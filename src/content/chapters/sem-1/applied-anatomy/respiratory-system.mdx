@@ -1,0 +1,207 @@
+---
+title: Respiratory System
+subject: applied-anatomy
+semester: 1
+chapterNo: 2
+level: core
+summary: The organs that bring air in and out, and the tiny air sacs where oxygen enters the blood.
+tags: [anatomy, respiration, diagram, most-important]
+outcomes:
+  - Name the organs of the respiratory tract in the correct order
+  - Describe the lungs, pleura and diaphragm
+  - Explain where and how gas exchange happens
+minutes: 9
+updated: 2026-11-25
+---
+
+import { Callout, Figure, ExamPoints, MCQ, GasExchange } from '../../../../components/mdx';
+
+## In simple words
+
+Breathing is not the same as respiration. **Breathing** (ventilation) moves air in and out of the lungs. **Respiration** is the whole process: taking in oxygen, using it in cells, and removing carbon dioxide.
+
+Air travels along one road:
+
+**Nose → Pharynx → Larynx → Trachea → Bronchi → Bronchioles → Alveoli**
+
+The lungs do not have muscles of their own. They expand because the **diaphragm** and intercostal muscles pull the chest open, and air rushes in.
+
+## The organs, one by one
+
+| Part | What it does |
+|---|---|
+| Nose | Warms, moistens and filters air; detects smell |
+| Pharynx | Common passage for air and food (the “throat”) |
+| Larynx | Voice box; guards the airway during swallowing |
+| Trachea | Windpipe; C-shaped cartilage rings keep it open |
+| Bronchi | Right and left main branches entering each lung |
+| Bronchioles | Smaller branches with smooth muscle; can narrow in asthma |
+| Alveoli | Tiny air sacs; the only place where gas exchange happens |
+| Pleura | Double membrane around the lung; fluid between layers reduces friction |
+
+<Figure caption="Air path from the nose to the alveoli. The right lung has three lobes, the left has two (space for the heart).">
+  <svg viewBox="0 0 640 430" role="img" aria-label="Labelled diagram of the respiratory system">
+    <defs>
+      <linearGradient id="lungFill" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#f3d6d3" />
+        <stop offset="100%" stop-color="#e6b7b3" />
+      </linearGradient>
+    </defs>
+
+    <path d="M250 30 q-45 10 -52 60 q-6 40 12 70" fill="none" stroke="#c9d8d4" stroke-width="2" stroke-dasharray="5 5" />
+
+    <ellipse cx="262" cy="72" rx="34" ry="18" fill="#eaf6fb" stroke="#8fc3d8" stroke-width="1.6" />
+    <text x="200" y="47" font-size="12" fill="#1d5f74" font-weight="700">Nasal cavity</text>
+    <path d="M258 90 q-4 34 6 52" fill="none" stroke="#8fc3d8" stroke-width="10" stroke-linecap="round" />
+    <text x="150" y="120" font-size="12" fill="#1d5f74" font-weight="700">Pharynx</text>
+
+    <rect x="272" y="146" width="30" height="30" rx="9" fill="#cfe7f1" stroke="#8fc3d8" stroke-width="1.6" />
+    <text x="320" y="166" font-size="12" fill="#1d5f74" font-weight="700">Larynx</text>
+
+    <rect x="277" y="180" width="20" height="92" rx="8" fill="#eaf6fb" stroke="#8fc3d8" stroke-width="1.6" />
+    <g stroke="#a9cfdd" stroke-width="1.4">
+      <line x1="279" y1="196" x2="295" y2="196" />
+      <line x1="279" y1="208" x2="295" y2="208" />
+      <line x1="279" y1="220" x2="295" y2="220" />
+      <line x1="279" y1="232" x2="295" y2="232" />
+      <line x1="279" y1="244" x2="295" y2="244" />
+    </g>
+    <text x="306" y="228" font-size="12" fill="#1d5f74" font-weight="700">Trachea</text>
+
+    <path d="M287 272 l-52 40" fill="none" stroke="#8fc3d8" stroke-width="9" stroke-linecap="round" />
+    <path d="M287 272 l52 40" fill="none" stroke="#8fc3d8" stroke-width="9" stroke-linecap="round" />
+    <text x="330" y="288" font-size="12" fill="#1d5f74" font-weight="700">Main bronchi</text>
+
+    <path d="M228 300 q-60 8 -72 62 q-8 44 42 52 q36 6 46 -22 q10 -30 6 -70 q-2 -22 -22 -22Z" fill="url(#lungFill)" stroke="#c98f89" stroke-width="1.6" />
+    <path d="M332 300 q60 8 72 62 q8 44 -42 52 q-36 6 -46 -22 q-10 -30 -6 -70 q2 -22 22 -22Z" fill="url(#lungFill)" stroke="#c98f89" stroke-width="1.6" />
+
+    <path d="M180 318 q28 22 40 60" fill="none" stroke="#c98f89" stroke-width="1.2" stroke-dasharray="4 4" />
+    <path d="M380 318 q-28 22 -40 60" fill="none" stroke="#c98f89" stroke-width="1.2" stroke-dasharray="4 4" />
+
+    <text x="150" y="300" font-size="12" fill="#8c3b34" font-weight="700">Right lung</text>
+    <text x="152" y="316" font-size="10" fill="#8c3b34">3 lobes</text>
+    <text x="400" y="300" font-size="12" fill="#8c3b34" font-weight="700">Left lung</text>
+    <text x="400" y="316" font-size="10" fill="#8c3b34">2 lobes</text>
+
+    <path d="M168 392 q72 -26 142 0 q70 -26 142 0" fill="none" stroke="#a98a4f" stroke-width="4" stroke-linecap="round" />
+    <text x="252" y="420" font-size="12" fill="#7a5f2c" font-weight="700">Diaphragm</text>
+
+    <circle cx="500" cy="150" r="44" fill="#eaf6fb" stroke="#8fc3d8" stroke-width="1.6" />
+    <circle cx="486" cy="140" r="11" fill="#fff" stroke="#8fc3d8" />
+    <circle cx="514" cy="140" r="11" fill="#fff" stroke="#8fc3d8" />
+    <circle cx="500" cy="166" r="11" fill="#fff" stroke="#8fc3d8" />
+    <path d="M462 190 q-26 40 -26 80" fill="none" stroke="#8fc3d8" stroke-width="2" stroke-dasharray="4 4" />
+    <text x="456" y="112" font-size="12" fill="#1d5f74" font-weight="700">Alveoli</text>
+    <text x="452" y="128" font-size="10" fill="#3d7688">site of gas exchange</text>
+  </svg>
+</Figure>
+
+<Callout type="must" title="The one line that wins marks">
+  Gas exchange happens **only in the alveoli**. Everything before it is just a pipeline.
+</Callout>
+
+## How breathing works
+
+1. The diaphragm contracts and flattens, and the ribs move up and out.
+2. The chest cavity gets bigger, so pressure inside falls.
+3. Air rushes in (inspiration). This is active.
+4. The diaphragm relaxes, the chest gets smaller, and air flows out (expiration). This is passive at rest.
+
+<GasExchange />
+
+## Numbers you must remember
+
+| Measurement | Normal adult value |
+|---|---|
+| Respiratory rate | 12–20 breaths per minute |
+| Tidal volume (air per normal breath) | about 500 mL |
+| Vital capacity | about 4,500–5,000 mL |
+| Oxygen in room air | 21% |
+| Oxygen carried by haemoglobin | about 97% saturation |
+| Carbon dioxide carried as bicarbonate | about 70% |
+
+## Where the nurse uses this
+
+- **Positioning:** sitting upright (Fowler’s) lets the diaphragm move down and improves breathing.
+- **Oxygen therapy:** humidify oxygen, check the prescription, watch for dryness of the nose.
+- **Suctioning:** clear secretions from the mouth, nose or trachea when the patient cannot cough.
+- **Chest physiotherapy:** percussion, vibration and postural drainage move mucus toward the larger airways.
+- **Incentive spirometer:** encourages deep breathing after surgery to prevent collapse of alveoli (atelectasis).
+
+<ExamPoints
+  level="must"
+  items={[
+    'Correct order: nose → pharynx → larynx → trachea → bronchi → bronchioles → alveoli.',
+    'Right lung has 3 lobes, left lung has 2 lobes (space for the heart).',
+    'Alveoli are the site of gas exchange; their thin walls and rich capillaries make this possible.',
+    'Diaphragm is the main muscle of inspiration; expiration at rest is passive.',
+    'Two pleura: parietal (attached to chest wall) and visceral (on the lung), with pleural fluid between them.',
+    'Normal adult respiratory rate is 12–20 per minute.',
+  ]}
+/>
+
+<ExamPoints
+  level="imp"
+  items={[
+    'Trachea is kept open by C-shaped cartilage rings; the gap at the back allows the food pipe to expand.',
+    'Bronchioles have smooth muscle and no cartilage — hence they narrow in asthma.',
+    'Tidal volume is about 500 mL; vital capacity is about 4,500–5,000 mL.',
+    'The nose warms, moistens and filters air before it reaches the lungs.',
+  ]}
+/>
+
+<Callout type="note" title="Memory trick">
+  Order of the airway: **“Nurses Please Listen To Breathing Better Always”** —
+  **N**ose, **P**harynx, **L**arynx, **T**rachea, **B**ronchi, **B**ronchioles, **A**lveoli.
+</Callout>
+
+## 60-second revision
+
+- Air path: nose → pharynx → larynx → trachea → bronchi → bronchioles → alveoli.
+- Right lung 3 lobes; left lung 2 lobes.
+- Alveoli = gas exchange. O₂ in, CO₂ out.
+- Diaphragm contracts → air in. Relaxes → air out.
+- Pleura = two layers with fluid; reduces friction.
+- Normal adult respiratory rate 12–20/min.
+
+## Test yourself
+
+<MCQ
+  q="Which structure is the actual site of gas exchange?"
+  options={['Trachea', 'Bronchiole', 'Alveolus', 'Pleura']}
+  answer={2}
+  explain="Alveoli have thin walls and a dense capillary network, so oxygen and carbon dioxide can diffuse across."
+/>
+
+<MCQ
+  q="How many lobes are present in the right lung?"
+  options={['One', 'Two', 'Three', 'Four']}
+  answer={2}
+  explain="The right lung has three lobes (upper, middle, lower). The left has two, because the heart takes up space."
+/>
+
+<MCQ
+  q="The main muscle of inspiration is the:"
+  options={['Diaphragm', 'Sternocleidomastoid', 'Internal oblique', 'Biceps brachii']}
+  answer={0}
+  explain="The diaphragm contracts and flattens, increasing the volume of the thoracic cavity and pulling air in."
+/>
+
+<MCQ
+  q="Which cartilage keeps the trachea from collapsing?"
+  options={['Hyaline cartilage rings', 'Elastic cartilage plates', 'Fibrocartilage discs', 'No cartilage is present']}
+  answer={0}
+  explain="The trachea has C-shaped hyaline cartilage rings. The gap at the back lets the oesophagus expand during swallowing."
+/>
+
+<MCQ
+  q="A normal respiratory rate for a healthy adult is:"
+  options={['6–10 per minute', '12–20 per minute', '22–30 per minute', '30–40 per minute']}
+  answer={1}
+  explain="12–20 breaths per minute is normal for adults at rest. Rates are higher in children."
+/>
+
+<Callout type="imp" title="Exam answer tip">
+  For a 5-mark question, draw the air-path diagram, name the organs in order, and write two lines on the alveoli.
+  That structure alone usually earns full marks.
+</Callout>

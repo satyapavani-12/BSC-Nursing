@@ -1,0 +1,52 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Breadcrumbs from '@components/Breadcrumbs.astro';
+import { getCollection } from 'astro:content';
+import { SEMESTERS, subjectsForSemester, subjectPath, parseChapterId } from '@data/subjects';
+
+export function getStaticPaths() {
+  return SEMESTERS.map((semester) => ({ params: { sem: String(semester.n) }, props: { semester } }));
+}
+
+const { semester } = Astro.props;
+const all = await getCollection('chapters');
+const readyIds = new Set(all.map((c) => {
+  const p = parseChapterId(c.id);
+  return `${p.semester}/${p.subjectSlug}/${p.slug}`;
+}));
+
+const list = subjectsForSemester(semester.n);
+---
+<BaseLayout title={`Semester ${semester.n} — ${semester.name}`} description={`Subjects and chapters for B.Sc. Nursing Semester ${semester.n}: ${list.map((s) => s.title).join(', ')}.`}>
+  <div class="wrap">
+    <Breadcrumbs items={[{ label: `Year ${semester.year}`, href: `/year/${semester.year}/` }, { label: `Semester ${semester.n}` }]} />
+    <header class="page-head">
+      <span class="eyebrow">Semester {semester.n} · Year {semester.year}</span>
+      <h1>{semester.name}</h1>
+      <p class="lede">{semester.focus}</p>
+    </header>
+
+    <ul class="grid grid-2">
+      {list.map((subject) => {
+        const ready = subject.chapters.filter((ch) => readyIds.has(`${subject.semester}/${subject.slug}/${ch.slug}`)).length;
+        return (
+          <li>
+            <a class="card" href={subjectPath(subject)}>
+              <span class="card-meta">
+                <span class="pill">{subject.code}</span>
+                <span class="pill {subject.exam === 'University' ? 'pill-core' : 'pill-support'}">{subject.exam}</span>
+              </span>
+              <h3>{subject.title}</h3>
+              <p>{subject.blurb}</p>
+              <span class="card-meta">
+                <span>{subject.chapters.length} chapters</span>
+                <span>·</span>
+                <span>{ready > 0 ? `${ready} ready now` : 'coming soon'}</span>
+              </span>
+            </a>
+          </li>
+        );
+      })}
+    </ul>
+  </div>
+</BaseLayout>

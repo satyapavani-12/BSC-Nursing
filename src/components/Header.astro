@@ -1,0 +1,33 @@
+---
+const path = Astro.url.pathname;
+const links = [
+  { href: '/#semesters', label: 'Semesters' },
+  { href: '/important/', label: 'Must-know' },
+  { href: '/revision/', label: 'Revision' },
+  { href: '/search/', label: 'Search' },
+];
+---
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="/" aria-label="Nursing Exam Prep home">
+      <span class="brand-mark" aria-hidden="true">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H19v15H6.5A2.5 2.5 0 0 0 4 20.5Z"></path>
+          <path d="M4 20.5A2.5 2.5 0 0 1 6.5 18H19"></path>
+          <path d="M9 7.5h5M11.5 5v5"></path>
+        </svg>
+      </span>
+      <span>
+        Nursing Exam Prep
+        <small>B.Sc. Nursing · INC syllabus</small>
+      </span>
+    </a>
+    <nav class="site-nav" aria-label="Main">
+      {links.map((l) => (
+        <a href={l.href} aria-current={path === l.href || (l.href !== '/' && path.startsWith(l.href.replace(/\/$/, '') + '/')) ? 'page' : undefined}>
+          {l.label}
+        </a>
+      ))}
+    </nav>
+  </div>
+</header>

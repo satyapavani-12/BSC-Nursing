@@ -1,0 +1,51 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Breadcrumbs from '@components/Breadcrumbs.astro';
+import { getCollection } from 'astro:content';
+import { SEMESTERS, chapterPath, parseChapterId, subjectBySlug } from '@data/subjects';
+
+export function getStaticPaths() {
+  return SEMESTERS.map((semester) => ({ params: { sem: String(semester.n) }, props: { semester } }));
+}
+
+const { semester } = Astro.props;
+const chapters = (await getCollection('chapters'))
+  .filter((c) => parseChapterId(c.id).semester === semester.n)
+  .sort((a, b) => (a.data.chapterNo ?? 99) - (b.data.chapterNo ?? 99));
+---
+<BaseLayout title={`Semester ${semester.n} revision sheet`} description={`Rapid revision of Semester ${semester.n} chapters: ${semester.name}.`}>
+  <div class="wrap wrap-narrow">
+    <Breadcrumbs
+      items={[
+        { label: 'Revision', href: '/revision/' },
+        { label: `Semester ${semester.n}` },
+      ]}
+    />
+    <header class="page-head">
+      <span class="eyebrow">Rapid revision</span>
+      <h1>Semester {semester.n}: {semester.name}</h1>
+      <p class="lede">Read the summary line. If it feels unfamiliar, open the chapter and study the diagram.</p>
+    </header>
+
+    {chapters.length === 0 && <p class="callout callout-note">Chapters for this semester are being written.</p>}
+
+    {chapters.map((entry) => {
+      const { subjectSlug, slug } = parseChapterId(entry.id);
+      const subject = subjectBySlug.get(subjectSlug);
+      return (
+        <div class="rev-block">
+          <h3>{subject?.title ?? subjectSlug}</h3>
+          <p style="margin:0 0 8px">
+            <a href={chapterPath(semester.n, subjectSlug, slug)}><strong>{entry.data.title}</strong></a>
+          </p>
+          <ul>
+            <li>{entry.data.summary}</li>
+            {entry.data.outcomes.slice(0, 2).map((o) => <li>{o}</li>)}
+          </ul>
+        </div>
+      );
+    })}
+
+    <p class="note-line mt-3"><a href="/important/">See the full most-important list →</a></p>
+  </div>
+</BaseLayout>

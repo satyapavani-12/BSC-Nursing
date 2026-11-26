@@ -1,0 +1,80 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Breadcrumbs from '@components/Breadcrumbs.astro';
+import { getCollection } from 'astro:content';
+import { subjects, chapterPath, parseChapterId, semPath } from '@data/subjects';
+
+export function getStaticPaths() {
+  return subjects.map((subject) => ({
+    params: { sem: String(subject.semester), subject: subject.slug },
+    props: { subject },
+  }));
+}
+
+const { subject } = Astro.props;
+const all = await getCollection('chapters');
+const readyIds = new Set(all.map((c) => {
+  const p = parseChapterId(c.id);
+  return `${p.semester}/${p.subjectSlug}/${p.slug}`;
+}));
+const ready = subject.chapters.filter((ch) => readyIds.has(`${subject.semester}/${subject.slug}/${ch.slug}`)).length;
+---
+<BaseLayout title={`${subject.title} (Semester ${subject.semester})`} description={`${subject.blurb} Chapter-wise notes for ${subject.title}, B.Sc. Nursing Semester ${subject.semester}.`}>
+  <div class="wrap">
+    <Breadcrumbs
+      items={[
+        { label: `Year ${subject.year}`, href: `/year/${subject.year}/` },
+        { label: `Semester ${subject.semester}`, href: semPath(subject.semester) },
+        { label: subject.title },
+      ]}
+    />
+
+    <header class="page-head">
+      <span class="eyebrow">{subject.code} · Semester {subject.semester}</span>
+      <h1>{subject.title}</h1>
+      <p class="lede">{subject.blurb}</p>
+      <ul class="chips">
+        <li><span class="pill">{subject.credits}</span></li>
+        <li><span class:list={['pill', subject.exam === 'University' ? 'pill-core' : 'pill-support']}>{subject.exam} exam</span></li>
+        <li><span class="pill">{subject.chapters.length} chapters</span></li>
+        <li><span class="pill pill-ready">{ready} ready</span></li>
+      </ul>
+    </header>
+
+    <ul class="list">
+      {subject.chapters.map((chapter, index) => {
+        const isReady = readyIds.has(`${subject.semester}/${subject.slug}/${chapter.slug}`);
+        const href = chapterPath(subject.semester, subject.slug, chapter.slug);
+        return (
+          <li>
+            {isReady ? (
+              <a class="chapter-row" href={href}>
+                <span class="chapter-num" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
+                <span>
+                  <span class="t">{chapter.title}</span>
+                  <span class="m">
+                    {chapter.level === 'core' ? '🔴 Most important' : '⭐ Important'} · Read in ~8 min
+                  </span>
+                </span>
+                <span class="pill pill-ready" style="margin-left:auto">Ready</span>
+              </a>
+            ) : (
+              <div class="chapter-row is-soon">
+                <span class="chapter-num" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
+                <span>
+                  <span class="t">{chapter.title}</span>
+                  <span class="m">{chapter.level === 'core' ? '🔴 Most important' : '⭐ Important'}</span>
+                </span>
+                <span class="pill pill-soon" style="margin-left:auto">Soon</span>
+              </div>
+            )}
+          </li>
+        );
+      })}
+    </ul>
+
+    <p class="note-line mt-2">
+      “Ready” chapters are written and free to read. “Soon” chapters are next in the writing queue.
+    </p>
+  </div>
+</BaseLayout>

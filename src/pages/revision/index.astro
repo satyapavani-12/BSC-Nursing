@@ -1,0 +1,35 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Breadcrumbs from '@components/Breadcrumbs.astro';
+import { getCollection } from 'astro:content';
+import { SEMESTERS, parseChapterId } from '@data/subjects';
+
+const chapters = await getCollection('chapters');
+const counts = new Map<number, number>();
+for (const entry of chapters) {
+  const { semester } = parseChapterId(entry.id);
+  counts.set(semester, (counts.get(semester) ?? 0) + 1);
+}
+---
+<BaseLayout title="Revision sheets" description="Semester-wise rapid revision: key chapters and one-line summaries before exams.">
+  <div class="wrap wrap-narrow">
+    <Breadcrumbs items={[{ label: 'Revision' }]} />
+    <header class="page-head">
+      <h1>Revision sheets</h1>
+      <p class="lede">One page per semester: every chapter and its core idea, for the night before the exam.</p>
+    </header>
+
+    <ul class="grid grid-2">
+      {SEMESTERS.map((sem) => (
+        <li>
+          <a class="card" href={`/revision/${sem.n}/`}>
+            <span class="pill pill-ready">Semester {sem.n}</span>
+            <h3>{sem.name}</h3>
+            <p>{sem.focus}</p>
+            <span class="card-meta">{counts.get(sem.n) ?? 0} chapters ready</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</BaseLayout>

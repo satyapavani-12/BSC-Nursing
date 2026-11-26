@@ -1,0 +1,115 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+import { SEMESTERS, YEARS, chapterPath, parseChapterId, subjects } from '@data/subjects';
+
+const chapters = await getCollection('chapters');
+const ready = chapters.length;
+const totalPlanned = subjects.reduce((sum, s) => sum + s.chapters.length, 0);
+
+const latest = chapters
+  .sort((a, b) => (a.data.updated ?? '').localeCompare(b.data.updated ?? ''))
+  .slice(0, 4);
+---
+<BaseLayout title="Home" description="Free B.Sc. Nursing study notes: year-wise, semester-wise and chapter-wise. Simple English, diagrams, mnemonics, exam points and MCQs.">
+  <section class="hero">
+    <div class="wrap">
+      <span class="eyebrow">INC B.Sc. Nursing · 4 years · 8 semesters</span>
+      <h1>Nursing, explained in simple English.</h1>
+      <p class="lede">
+        Chapter-wise notes built for exams: a labelled diagram, a short explanation, the exact points examiners
+        ask for, a memory trick and quick MCQs. No login. No videos to load.
+      </p>
+
+      <form class="searchbar" action="/search/" method="get" role="search">
+        <label class="sr-only" for="q">Search topics</label>
+        <input id="q" type="search" name="q" placeholder="Try: vital signs, cardiac cycle, IMNCI…" autocomplete="off" />
+        <button class="btn" type="submit">Search</button>
+      </form>
+
+      <ul class="stats">
+        <li><b>{SEMESTERS.length}</b><span>semesters</span></li>
+        <li><b>{subjects.length}</b><span>subjects</span></li>
+        <li><b>{totalPlanned}</b><span>chapters planned</span></li>
+        <li><b>{ready}</b><span>chapters ready now</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <div class="section-head" id="semesters">
+      <h2>Choose your year</h2>
+      <p>Every subject, every chapter, in syllabus order.</p>
+    </div>
+
+    <ul class="grid grid-4">
+      {YEARS.map((year) => (
+        <li class="card year-card">
+          <span class="year-big">Year {year.n}</span>
+          <h3><a href={`/year/${year.n}/`}>{year.title}</a></h3>
+          <p>{year.tagline}</p>
+          <ul>
+            {year.semesters.map((n) => {
+              const sem = SEMESTERS.find((s) => s.n === n)!;
+              return (
+                <li>
+                  <a href={`/sem/${n}/`}>Semester {n} — {sem.name}</a>
+                </li>
+              );
+            })}
+          </ul>
+        </li>
+      ))}
+    </ul>
+
+    <div class="section-head">
+      <h2>Newly added chapters</h2>
+      <p><a href="/search/">Search all topics →</a></p>
+    </div>
+
+    <ul class="list">
+      {latest.map((entry) => {
+        const { semester, subjectSlug, slug } = parseChapterId(entry.id);
+        return (
+        <li>
+          <a class="chapter-row" href={chapterPath(semester, subjectSlug, slug)}>
+            <span class="chapter-num" aria-hidden="true">📖</span>
+            <span>
+              <span class="t">{entry.data.title}</span>
+              <span class="m">Semester {entry.data.semester} · {entry.data.minutes} min read</span>
+            </span>
+          </a>
+        </li>
+        );
+      })}
+    </ul>
+
+    <div class="section-head">
+      <h2>How to use this site</h2>
+    </div>
+
+    <ol class="grid grid-3">
+      <li class="card">
+        <h3>1. Read the simple version</h3>
+        <p>Each chapter starts with a short explanation in plain English. Understand first, memorise later.</p>
+      </li>
+      <li class="card">
+        <h3>2. Look at the diagram</h3>
+        <p>One clear labelled picture per chapter. Most viva and MCQ questions come straight from it.</p>
+      </li>
+      <li class="card">
+        <h3>3. Use the exam points</h3>
+        <p>🔴 Most important and ⭐ Important boxes tell you exactly what to write in the answer sheet.</p>
+      </li>
+    </ol>
+
+    <div class="section-head">
+      <h2>Before your exam</h2>
+    </div>
+
+    <p>
+      Start with the <a href="/important/">Most important concepts</a> list, then read the{' '}
+      <a href="/revision/">semester revision sheets</a> for a fast recap.
+    </p>
+  </div>
+</BaseLayout>

@@ -1,0 +1,27 @@
+---
+interface Props {
+  q: string;
+  options: string[];
+  /** Zero-based index of the correct option */
+  answer: number;
+  explain?: string;
+}
+const { q, options, answer, explain } = Astro.props;
+const letter = String.fromCharCode(65 + answer);
+---
+<div class="mcq" data-answer={answer}>
+  <p class="mcq-q">{q}</p>
+  <ul class="mcq-opts">
+    {options.map((opt, i) => (
+      <li>
+        <button type="button" class="mcq-opt" data-i={i}>
+          <span class="k" aria-hidden="true">{String.fromCharCode(65 + i)}</span>
+          <span>{opt}</span>
+        </button>
+      </li>
+    ))}
+  </ul>
+  <p class="mcq-explain" hidden>
+    <b>Answer: {letter}.</b> {explain ?? ''}
+  </p>
+</div>

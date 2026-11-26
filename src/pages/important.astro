@@ -1,0 +1,64 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Breadcrumbs from '@components/Breadcrumbs.astro';
+import { getCollection } from 'astro:content';
+import { chapterPath, parseChapterId, subjectBySlug } from '@data/subjects';
+
+const chapters = await getCollection('chapters');
+
+const groups = new Map<number, { title: string; subject: string; url: string; summary: string }[]>();
+for (const entry of chapters.filter((c) => c.data.level === 'core')) {
+  const { semester, subjectSlug, slug } = parseChapterId(entry.id);
+  const list = groups.get(semester) ?? [];
+  list.push({
+    title: entry.data.title,
+    subject: subjectBySlug.get(subjectSlug)?.title ?? subjectSlug,
+    url: chapterPath(semester, subjectSlug, slug),
+    summary: entry.data.summary,
+  });
+  groups.set(semester, list);
+}
+
+const sorted = [...groups.entries()].sort((a, b) => a[0] - b[0]);
+---
+<BaseLayout title="Most important concepts" description="The chapters and concepts examiners ask most often, grouped by semester.">
+  <div class="wrap wrap-narrow">
+    <Breadcrumbs items={[{ label: 'Most important concepts' }]} />
+    <header class="page-head">
+      <span class="eyebrow">🔴 High-yield list</span>
+      <h1>Most important concepts</h1>
+      <p class="lede">
+        These chapters carry the highest exam weight. If you are short on time, study these first — each one has
+        a diagram, the exact answer points and MCQs.
+      </p>
+    </header>
+
+    {sorted.length === 0 && (
+      <p class="callout callout-note">Chapters are being added. Check back soon.</p>
+    )}
+
+    {sorted.map(([semester, items]) => (
+      <section>
+        <h2>Semester {semester}</h2>
+        <ul class="list">
+          {items.map((item) => (
+            <li>
+              <a class="chapter-row" href={item.url}>
+                <span class="chapter-num" aria-hidden="true">🔴</span>
+                <span>
+                  <span class="t">{item.title}</span>
+                  <span class="m">{item.subject}</span>
+                </span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    ))}
+
+    <p class="note-line mt-3">
+      A chapter is marked 🔴 when it is frequently examined and clinically essential. ⭐ chapters matter too, but
+      are asked less often.
+    </p>
+  </div>
+</BaseLayout>

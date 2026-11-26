@@ -1,0 +1,176 @@
+---
+title: Health Information Systems
+subject: health-informatics
+semester: 2
+chapterNo: 3
+level: support
+summary: Health information systems — HIS modules, EHR, PACS, RIS and benefits in hospitals.
+tags: [informatics, HIS, EHR, health information systems]
+outcomes:
+  - List modules of a hospital information system
+  - Describe the electronic health record
+  - State benefits of health information systems
+minutes: 6
+updated: 2026-11-25
+---
+
+import { Callout, ExamPoints, Figure, MCQ } from '../../../../components/mdx';
+
+## In simple words
+
+Health information systems (HIS) are computer systems that manage health data in hospitals and clinics. They connect departments and improve care coordination.
+
+Key systems: hospital information system (HIS), electronic health record (EHR), picture archiving (PACS), radiology information (RIS), laboratory information (LIS).
+
+## HIS modules
+
+| Module | Function |
+|---|---|
+| Patient registration | Admission, demographics |
+| Electronic health record | Clinical notes, results, orders |
+| Pharmacy | Medication orders, dispensing |
+| Laboratory | Test orders and results |
+| Radiology (PACS/RIS) | Images and reports |
+| Billing | Charges and payments |
+
+## Electronic health record (EHR)
+
+An EHR is a digital version of a patient’s chart. It includes history, diagnoses, medicines, allergies, immunisations, results and notes. It is accessible to authorised providers.
+
+## Benefits
+
+- Legible, complete records.
+- Quick access to results and history.
+- Fewer duplicate tests.
+- Better coordination between departments.
+- Data for reporting and quality improvement.
+
+<Figure caption="HIS modules connect registration, EHR, pharmacy, laboratory, radiology and billing.">
+<svg viewBox="0 0 720 495" role="img" aria-label="Concept map of Health Information Systems">
+  <rect x="16" y="14" width="688" height="467" rx="16" fill="#fbfdfc" stroke="#d9e6e2" />
+  <text x="360" y="46" text-anchor="middle" font-size="16" font-weight="700" fill="#1d5f74">Health Information Systems</text>
+  <text x="360" y="77" text-anchor="middle" font-size="9.5" letter-spacing="1.6" fill="#6b8a94">CHAPTER MAP</text>
+  <line x1="200" y1="89" x2="520" y2="89" stroke="#dcebe6" stroke-width="1.4" />
+  <rect x="24" y="105" width="324" height="78" rx="10" fill="#ffffff" stroke="#2f7f99" stroke-opacity="0.45" />
+  <rect x="24" y="105" width="6" height="78" rx="3" fill="#2f7f99" />
+  <circle cx="54" cy="144.0" r="13" fill="#eaf6fb" stroke="#2f7f99" stroke-opacity="0.6" />
+  <text x="54" y="148.0" text-anchor="middle" font-size="11" font-weight="700" fill="#2f7f99">1</text>
+  <text x="78" y="151" font-size="12.5" font-weight="700" fill="#22485a">Registration</text>
+  <rect x="24" y="195" width="324" height="78" rx="10" fill="#ffffff" stroke="#2f7f99" stroke-opacity="0.45" />
+  <rect x="24" y="195" width="6" height="78" rx="3" fill="#2f7f99" />
+  <circle cx="54" cy="234.0" r="13" fill="#eaf6fb" stroke="#2f7f99" stroke-opacity="0.6" />
+  <text x="54" y="238.0" text-anchor="middle" font-size="11" font-weight="700" fill="#2f7f99">2</text>
+  <text x="78" y="241" font-size="12.5" font-weight="700" fill="#22485a">EHR</text>
+  <rect x="24" y="285" width="324" height="78" rx="10" fill="#ffffff" stroke="#2f7f99" stroke-opacity="0.45" />
+  <rect x="24" y="285" width="6" height="78" rx="3" fill="#2f7f99" />
+  <circle cx="54" cy="324.0" r="13" fill="#eaf6fb" stroke="#2f7f99" stroke-opacity="0.6" />
+  <text x="54" y="328.0" text-anchor="middle" font-size="11" font-weight="700" fill="#2f7f99">3</text>
+  <text x="78" y="331" font-size="12.5" font-weight="700" fill="#22485a">Pharmacy</text>
+  <rect x="24" y="375" width="324" height="78" rx="10" fill="#ffffff" stroke="#2f7f99" stroke-opacity="0.45" />
+  <rect x="24" y="375" width="6" height="78" rx="3" fill="#2f7f99" />
+  <circle cx="54" cy="414.0" r="13" fill="#eaf6fb" stroke="#2f7f99" stroke-opacity="0.6" />
+  <text x="54" y="418.0" text-anchor="middle" font-size="11" font-weight="700" fill="#2f7f99">4</text>
+  <text x="78" y="421" font-size="12.5" font-weight="700" fill="#22485a">Laboratory</text>
+  <rect x="372" y="105" width="324" height="78" rx="10" fill="#ffffff" stroke="#2f7f99" stroke-opacity="0.45" />
+  <rect x="372" y="105" width="6" height="78" rx="3" fill="#2f7f99" />
+  <circle cx="402" cy="144.0" r="13" fill="#eaf6fb" stroke="#2f7f99" stroke-opacity="0.6" />
+  <text x="402" y="148.0" text-anchor="middle" font-size="11" font-weight="700" fill="#2f7f99">5</text>
+  <text x="426" y="151" font-size="12.5" font-weight="700" fill="#22485a">Radiology</text>
+  <rect x="372" y="195" width="324" height="78" rx="10" fill="#ffffff" stroke="#5f8a3a" stroke-opacity="0.45" />
+  <rect x="372" y="195" width="6" height="78" rx="3" fill="#5f8a3a" />
+  <circle cx="402" cy="234.0" r="13" fill="#eef6e6" stroke="#5f8a3a" stroke-opacity="0.6" />
+  <text x="402" y="238.0" text-anchor="middle" font-size="11" font-weight="700" fill="#5f8a3a">6</text>
+  <text x="426" y="241" font-size="12.5" font-weight="700" fill="#22485a">Quick access to results</text>
+  <rect x="372" y="285" width="324" height="78" rx="10" fill="#ffffff" stroke="#5f8a3a" stroke-opacity="0.45" />
+  <rect x="372" y="285" width="6" height="78" rx="3" fill="#5f8a3a" />
+  <circle cx="402" cy="324.0" r="13" fill="#eef6e6" stroke="#5f8a3a" stroke-opacity="0.6" />
+  <text x="402" y="328.0" text-anchor="middle" font-size="11" font-weight="700" fill="#5f8a3a">7</text>
+  <text x="426" y="331" font-size="12.5" font-weight="700" fill="#22485a">Better coordination</text>
+  <circle cx="239.60000000000002" cy="465" r="5" fill="#2f7f99" />
+  <text x="250.60000000000002" y="469" font-size="10" fill="#5b7a86">HIS modules</text>
+  <circle cx="345.20000000000005" cy="465" r="5" fill="#5f8a3a" />
+  <text x="356.20000000000005" y="469" font-size="10" fill="#5b7a86">EHR = digital patient…</text>
+</svg>
+</Figure>
+
+<Callout type="must" title="EHR is the digital chart">
+  **The EHR is the patient’s digital chart — history, diagnoses, medicines, allergies, results and notes — accessible to authorised providers.**
+</Callout>
+
+## Where the nurse uses this
+
+- **Document in the EHR** — chart notes, vital signs and care in real time.
+- **View results** — check lab and imaging results as soon as available.
+- **Medication orders** — receive and process electronic orders and alerts.
+- **Coordinate care** — share information with other departments and providers.
+- **Protect access** — log in with your own ID; view only what you need for care.
+
+<ExamPoints
+  level="must"
+  items={[
+    'HIS modules: registration, EHR, pharmacy, laboratory, radiology, billing.',
+    'The EHR is the digital patient chart — history, diagnoses, medicines, allergies, results, notes.',
+    'Benefits: legible records, quick access, fewer duplicate tests, better coordination.',
+    'Nurses document and view results in the EHR.',
+    'Protect access — your own ID, view only what you need.',
+  ]}
+/>
+
+<ExamPoints
+  level="imp"
+  items={[
+    'PACS stores and displays radiology images.',
+    'LIS manages laboratory orders and results.',
+    'EHR supports decision-making and care coordination.',
+    'Report system problems to IT support.',
+  ]}
+/>
+
+<Callout type="note" title="Memory trick">
+  HIS modules: **“R-E-P-L-R-B”** — Registration, EHR, Pharmacy, Laboratory, Radiology, Billing.
+</Callout>
+
+## 60-second revision
+
+- HIS connects hospital departments via computer.
+- Modules: registration, EHR, pharmacy, laboratory, radiology, billing.
+- EHR = digital patient chart.
+- Benefits: legible records, quick access, coordination.
+- Nurse: document, view results, process orders, protect access.
+
+## Test yourself
+
+<MCQ
+  q="EHR stands for:"
+  options={['Electronic Health Record', 'External Health Record', 'Emergency Health Record', 'Extended Health Record']}
+  answer={0}
+  explain="EHR = Electronic Health Record — the digital patient chart."
+/>
+
+<MCQ
+  q="PACS is used in:"
+  options={['Laboratory', 'Radiology', 'Pharmacy', 'Billing']}
+  answer={1}
+  explain="PACS (Picture Archiving and Communication System) stores radiology images."
+/>
+
+<MCQ
+  q="A benefit of HIS is:"
+  options={['Slower records', 'Fewer duplicate tests', 'More paper', 'Less access']}
+  answer={1}
+  explain="HIS reduces duplicate tests by sharing results across departments."
+/>
+
+<MCQ
+  q="Nurses should access the EHR:"
+  options={['For all patients', 'Only for their assigned patients', 'For friends and family', 'Whenever curious']}
+  answer={1}
+  explain="Access only the records of patients you are caring for."
+/>
+
+<MCQ
+  q="Billing module handles:"
+  options={['Clinical notes', 'Charges and payments', 'Lab results only', 'Radiology images only']}
+  answer={1}
+  explain="The billing module manages patient charges and payments."
+/>

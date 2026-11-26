@@ -1,0 +1,15 @@
+---
+interface Props {
+  level?: 'must' | 'imp';
+  title?: string;
+  items: string[];
+}
+const { level = 'must', title, items } = Astro.props;
+const heading = title ?? (level === 'must' ? '🔴 Most important for exams' : '⭐ Important for exams');
+---
+<section class:list={['points', level]}>
+  <h3>{heading}</h3>
+  <ol>
+    {items.map((item) => <li set:html={item} />)}
+  </ol>
+</section>

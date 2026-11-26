@@ -1,0 +1,79 @@
+---
+import Header from '@components/Header.astro';
+import Footer from '@components/Footer.astro';
+import '@styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+  /** Adds noindex for placeholder pages */
+  noindex?: boolean;
+}
+
+const { title, description = 'Simple, exam-focused B.Sc. Nursing notes with diagrams, mnemonics and MCQs.', noindex } = Astro.props;
+const fullTitle = title === 'Home' ? 'Nursing Exam Prep — B.Sc. Nursing notes, simply explained' : `${title} · Nursing Exam Prep`;
+const canonical = new URL(Astro.url.pathname, Astro.site ?? Astro.url.origin).href;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex" />}
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta name="theme-color" content="#0c6b60" />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <Header />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer />
+    <script>
+      // Animations: pause / play
+      document.addEventListener('click', (event) => {
+        const target = event.target;
+        if (!(target instanceof Element)) return;
+
+        const toggle = target.closest<HTMLButtonElement>('[data-anim-toggle]');
+        if (toggle) {
+          const box = toggle.closest<HTMLElement>('[data-anim]');
+          if (!box) return;
+          const paused = box.classList.toggle('is-paused');
+          toggle.textContent = paused ? '▶ Play' : '⏸ Pause';
+          toggle.setAttribute('aria-pressed', String(paused));
+          return;
+        }
+
+        const print = target.closest<HTMLButtonElement>('[data-print]');
+        if (print) {
+          window.print();
+          return;
+        }
+
+        // MCQ answer checking
+        const option = target.closest<HTMLButtonElement>('.mcq-opt');
+        if (option) {
+          const box = option.closest<HTMLElement>('.mcq');
+          if (!box) return;
+          const correct = Number(box.dataset.answer);
+          const picked = Number(option.dataset.i);
+          box.querySelectorAll<HTMLButtonElement>('.mcq-opt').forEach((opt, i) => {
+            opt.classList.remove('correct', 'wrong');
+            if (i === correct) opt.classList.add('correct');
+          });
+          if (picked !== correct) option.classList.add('wrong');
+          const explain = box.querySelector<HTMLElement>('.mcq-explain');
+          if (explain) explain.hidden = false;
+        }
+      });
+    </script>
+  </body>
+</html>

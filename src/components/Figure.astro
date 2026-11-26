@@ -1,0 +1,16 @@
+---
+interface Props {
+  caption?: string;
+  /** Short label shown above the figure, e.g. "Diagram" */
+  label?: string;
+}
+const { caption, label = 'Diagram' } = Astro.props;
+---
+<figure class="figure">
+  <slot />
+  {caption && (
+    <figcaption>
+      <b>{label}:</b> <span set:html={caption} />
+    </figcaption>
+  )}
+</figure>

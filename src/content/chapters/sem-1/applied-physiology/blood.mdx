@@ -1,0 +1,186 @@
+---
+title: Blood
+subject: applied-physiology
+semester: 1
+chapterNo: 5
+level: core
+summary: Blood composition, plasma, red and white cells, platelets, blood groups and clotting.
+tags: [physiology, blood, erythrocytes, leukocytes, clotting]
+outcomes:
+  - List the components of blood and their functions
+  - Describe the ABO and Rh blood group systems
+  - Explain how blood clots and why clotting matters
+minutes: 8
+updated: 2026-11-25
+---
+
+import { Callout, ExamPoints, Figure, MCQ } from '../../../../components/mdx';
+
+## In simple words
+
+Blood is a connective tissue that carries oxygen, food, hormones and waste around the body, defends against infection and stops bleeding after injury. About 55% of blood is plasma and 45% is formed elements (cells and platelets).
+
+An adult has about **5 litres of blood**. Blood has a slightly alkaline pH of about 7.35–7.45.
+
+## Components of blood
+
+| Component | Percentage | Main function |
+|---|---|---|
+| Plasma | About 55% | Carries cells, nutrients, hormones, waste and proteins |
+| Red cells (erythrocytes) | About 45% of cells | Carry oxygen using haemoglobin |
+| White cells (leukocytes) | Less than 1% | Defend against infection |
+| Platelets (thrombocytes) | Less than 1% | Help blood clot |
+
+Normal adult values:
+- Haemoglobin: male 13–17 g/dL, female 12–16 g/dL
+- Red cell count: about 4.5–5.5 million/mm³
+- White cell count: 4,000–11,000/mm³
+- Platelets: 150,000–450,000/mm³
+- Erythrocyte sedimentation rate (ESR): male 0–15 mm/hr, female 0–20 mm/hr
+
+## Blood groups
+
+The **ABO system** depends on antigens on red cells:
+
+| Group | Antigen on red cells | Antibody in plasma |
+|---|---|---|
+| A | A | Anti-B |
+| B | B | Anti-A |
+| AB | A and B | None |
+| O | None | Anti-A and anti-B |
+
+The **Rh system** is based on the D antigen. Rh-positive has it; Rh-negative does not. Rh matters in pregnancy and transfusion.
+
+Group O is the **universal donor** for red cells; group AB is the **universal recipient**.
+
+## Clotting
+
+When a vessel is injured:
+1. Blood vessels constrict.
+2. Platelets stick to the site and form a plug.
+3. Clotting factors activate fibrinogen into fibrin threads.
+4. Fibrin traps blood cells to form a clot.
+
+Vitamin K is needed to make several clotting factors. Calcium is also essential. Clotting is kept inside the vessel by natural anticoagulants such as heparin.
+
+<Figure caption="Blood composition: plasma, red cells, white cells and platelets. Plasma carries everything; red cells carry oxygen.">
+  <svg viewBox="0 0 640 420" role="img" aria-label="Diagram of blood composition percentages">
+    <rect x="20" y="14" width="600" height="392" rx="14" fill="#fbfdfc" stroke="#d9e6e2" />
+    <text x="60" y="52" font-size="14" font-weight="700" fill="#1d5f74">Blood composition</text>
+
+    <rect x="60" y="72" width="520" height="76" rx="10" fill="#e6f3f8" stroke="#8fc3d8" stroke-width="1.6" />
+    <text x="82" y="102" font-size="13" font-weight="700" fill="#1d5f74">Plasma — about 55%</text>
+    <text x="82" y="124" font-size="11" fill="#33506f">Carries cells, food, hormones, waste and proteins</text>
+
+    <rect x="60" y="170" width="160" height="108" rx="10" fill="#fdecea" stroke="#d79a94" stroke-width="1.4" />
+    <circle cx="140" cy="202" r="17" fill="#e06b62" />
+    <text x="140" y="207" text-anchor="middle" font-size="9" font-weight="700" fill="#ffffff">RBC</text>
+    <text x="140" y="240" text-anchor="middle" font-size="12" font-weight="700" fill="#8c3b34">Red cells ~45%</text>
+    <text x="140" y="260" text-anchor="middle" font-size="10" fill="#8c3b34">carry oxygen</text>
+
+    <rect x="240" y="170" width="160" height="108" rx="10" fill="#f7f0fb" stroke="#c3a8d8" stroke-width="1.4" />
+    <ellipse cx="320" cy="202" rx="20" ry="12" fill="#efe2f7" stroke="#a97fc4" stroke-width="2" />
+    <text x="320" y="206" text-anchor="middle" font-size="9" font-weight="700" fill="#6b3f8a">WBC</text>
+    <text x="320" y="240" text-anchor="middle" font-size="12" font-weight="700" fill="#6b3f8a">White cells &lt;1%</text>
+    <text x="320" y="260" text-anchor="middle" font-size="10" fill="#6b3f8a">fight infection</text>
+
+    <rect x="420" y="170" width="160" height="108" rx="10" fill="#fbf2e3" stroke="#d9b98a" stroke-width="1.4" />
+    <circle cx="482" cy="202" r="6" fill="#d99a55" />
+    <circle cx="500" cy="202" r="6" fill="#d99a55" />
+    <circle cx="518" cy="202" r="6" fill="#d99a55" />
+    <text x="500" y="240" text-anchor="middle" font-size="12" font-weight="700" fill="#8c5a2c">Platelets &lt;1%</text>
+    <text x="500" y="260" text-anchor="middle" font-size="10" fill="#8c5a2c">form clots</text>
+
+    <text x="60" y="316" font-size="10" font-weight="700" fill="#33506f">Share of blood volume</text>
+    <rect x="60" y="326" width="286" height="24" fill="#e6f3f8" stroke="#8fc3d8" />
+    <rect x="346" y="326" width="234" height="24" fill="#f3c9c5" stroke="#d79a94" />
+    <text x="76" y="343" font-size="10" font-weight="700" fill="#1d5f74">Plasma 55%</text>
+    <text x="362" y="343" font-size="10" font-weight="700" fill="#8c3b34">Cells 45%</text>
+    <text x="60" y="374" font-size="10" fill="#5b7a86">Cells = red cells + white cells + platelets</text>
+  </svg>
+</Figure>
+
+<Callout type="must" title="Transfusion rule">
+  **Give the correct blood group.** Group O can give to anyone; group AB can receive from anyone. Rh-negative must not receive Rh-positive blood.
+</Callout>
+
+## Where the nurse uses this
+
+- **Blood transfusion** — check the prescription, patient identity and blood group with two people; watch for fever, rash or back pain during the first 15 minutes.
+- **Blood samples** — label at the bedside, use the correct tube, send promptly.
+- **Anaemia** — watch for pallor, fatigue and breathlessness; report low haemoglobin.
+- **Bleeding** — apply direct pressure, elevate the limb, note the time and amount.
+- **IV fluids** — know which solutions are isotonic; never add drugs to blood.
+
+<ExamPoints
+  level="must"
+  items={[
+    'Blood is about 55% plasma and 45% formed elements.',
+    'Red cells carry oxygen; white cells fight infection; platelets clot blood.',
+    'Adult haemoglobin: male 13–17 g/dL, female 12–16 g/dL.',
+    'ABO groups are A, B, AB and O based on red-cell antigens.',
+    'Group O is the universal donor; group AB is the universal recipient.',
+    'Rh factor is the D antigen; Rh-negative cannot safely receive Rh-positive blood.',
+  ]}
+/>
+
+<ExamPoints
+  level="imp"
+  items={[
+    'Normal adult blood volume is about 5 litres.',
+    'Platelet count is 150,000–450,000/mm³.',
+    'Fibrinogen is converted to fibrin during clotting.',
+    'Vitamin K is needed to make several clotting factors.',
+  ]}
+/>
+
+<Callout type="note" title="Memory trick">
+  Universal donor/recipient: **“O gives all, AB takes all.”**
+</Callout>
+
+## 60-second revision
+
+- Blood: 55% plasma, 45% cells and platelets.
+- RBC = oxygen; WBC = infection; platelets = clot.
+- Hb: male 13–17, female 12–16 g/dL.
+- ABO groups A, B, AB, O.
+- O gives all; AB takes all.
+- Rh D antigen; match Rh in transfusion and pregnancy.
+- Platelets + fibrinogen → clot.
+
+## Test yourself
+
+<MCQ
+  q="Which blood group is the universal donor?"
+  options={['A', 'B', 'AB', 'O']}
+  answer={3}
+  explain="Group O red cells have no A or B antigens, so they can be given to any group in an emergency."
+/>
+
+<MCQ
+  q="Which cells carry oxygen?"
+  options={['White cells', 'Platelets', 'Red cells', 'Plasma']}
+  answer={2}
+  explain="Red cells contain haemoglobin, which binds oxygen."
+/>
+
+<MCQ
+  q="The Rh factor is based on the:"
+  options={['A antigen', 'D antigen', 'B antigen', 'O antigen']}
+  answer={1}
+  explain="Rh-positive means the D antigen is present on red cells."
+/>
+
+<MCQ
+  q="Normal adult blood volume is about:"
+  options={['2 litres', '5 litres', '8 litres', '12 litres']}
+  answer={1}
+  explain="An average adult has about 5 litres of blood."
+/>
+
+<MCQ
+  q="Platelets help blood to:"
+  options={['Carry oxygen', 'Fight infection', 'Clot', 'Transport hormones']}
+  answer={2}
+  explain="Platelets stick to an injured vessel wall and start the clotting process."
+/>
